@@ -5,7 +5,7 @@ import {AuthContext} from '../src/context/AuthContext'
 import Card from '../components/Card'
 import Button from '../components/Button'
 
-type Wallet={id:number;user_id:string;value:number;icon_name:string|null}
+type Wallet={id:number;user_id:string;amount:number;icon_name:string|null}
 type CategoryGroup={id:number;user_id?:string;name:string}
 type Category={id:number;category_group_id:number;allocated_amount:number;spent_amount:number;target:string|null;icon_name:string|null}
 type Tx={id:number;amount:number;type:'income'|'expense';wallet_id:number;category_id:number|null;note:string|null;created_at:string}
@@ -40,7 +40,7 @@ export default function Dashboard(){
       <div className='space-y-3'>
         <input className='w-full p-2 rounded-lg' placeholder='Icon (emoji or name)' value={wIcon} onChange={e=>setWIcon(e.target.value)}/>
         <input type='number' className='w-full p-2 rounded-lg' placeholder='Initial value' value={wValue} onChange={e=>setWValue(Number(e.target.value||0))}/>
-        <Button onClick={async()=>{const uid=session.user.id; const {error}=await supabase.from('wallets').insert({user_id:uid,icon_name:wIcon,value:wValue}); if(!error){setWValue(0); await loadWallets()} else alert(error.message)}}>Add Wallet</Button>
+        <Button onClick={async()=>{const uid=session.user.id; const {error}=await supabase.from('wallets').insert({user_id:uid,icon_name:wIcon,amount:wValue}); if(!error){setWValue(0); await loadWallets()} else alert(error.message)}}>Add Wallet</Button>
       </div>
       <div className='mt-4 text-sm text-[var(--muted)]'>Your wallets: {wallets.map(w=>w.icon_name??'💼').join(' ')||'—'}</div>
     </Card>
