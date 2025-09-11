@@ -16,7 +16,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AuthProvider>
       {!hideNavbar && <Navbar />}
-      <main className="mx-auto max-w-6xl px-4 py-6">
+      <main className="mx-auto max-w-6xl px-4 py-6 mt-6">
         {isProtected ? (
           <RequireAuth>
             <Component {...pageProps} />

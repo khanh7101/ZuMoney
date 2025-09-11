@@ -1,10 +1,9 @@
+// components/Navbar.tsx
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-type NavItem = { label: string; href: string };
-
-const NAV: NavItem[] = [
+const NAV = [
   { label: "Dashboard", href: "/" },
   { label: "Wallets", href: "/wallets" },
   { label: "Transactions", href: "/transactions" },
@@ -15,17 +14,22 @@ export default function Navbar() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
-  const isActive = (href: string) =>
-    router.pathname === href || router.pathname.startsWith(href + "/");
+  // asPath ổn định hơn pathname (kể cả có query/hash)
+  const path = router.asPath;
 
-  useEffect(() => setOpen(false), [router.pathname]);
+  // đóng menu khi đổi route
+  useEffect(() => setOpen(false), [path]);
+
+  const isActive = useMemo(
+    () => (href: string) => path === href || path.startsWith(href + "/"),
+    [path]
+  );
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/70 backdrop-blur">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2">
-        {/* <Link href="/" className="font-semibold tracking-tight">ZuMoney</Link> */}
+        <Link href="/" className="font-semibold tracking-tight">ZuMoney</Link>
 
-        {/* Desktop */}
         <ul className="hidden gap-1 md:flex">
           {NAV.map((item) => (
             <li key={item.href}>
@@ -44,8 +48,10 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Mobile toggle */}
         <button
+          type="button"             
+           /* quan trọng để không submit form */
+            
           className="inline-flex items-center rounded-lg border px-3 py-2 text-sm md:hidden"
           aria-expanded={open}
           aria-label="Toggle navigation"
@@ -55,7 +61,6 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile menu */}
       {open && (
         <div className="border-t md:hidden">
           <ul className="mx-auto max-w-6xl px-4 py-2">
