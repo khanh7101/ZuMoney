@@ -1,2 +1,10 @@
 /** @type {import('tailwindcss').Config} */
-module.exports={content:['./pages/**/*.{js,ts,jsx,tsx}','./components/**/*.{js,ts,jsx,tsx}'],theme:{extend:{}},plugins:[]}
+module.exports = {
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}", // nếu bạn còn component trong /src
+  ],
+  theme: { extend: {} },
+  plugins: [],
+};

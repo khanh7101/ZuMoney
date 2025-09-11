@@ -1,7 +1,7 @@
 export type Wallet = {
   id: number;
   user_id: string;
-  amount: number;       // dùng amount (không dùng value nữa)
+  amount: number;       
   icon_name: string | null;
 };
 
