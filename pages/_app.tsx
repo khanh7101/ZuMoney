@@ -1,8 +1,8 @@
 // pages/_app.tsx
 import type { AppProps } from "next/app";
 import "../styles/globals.css";
-import { AuthProvider } from "../src/context/AuthContext";
-import BottomNav from "../components/nav/BottomNav";
+import { AuthProvider } from "../src/features/auth/context/AuthContext";
+import BottomNav from "../src/shared/nav/BottomNav";
 import { useRouter } from "next/router";
 
 export default function MyApp({ Component, pageProps }: AppProps) {

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { AuthContext } from '../src/context/AuthContext';
-import { signUpWithEmailPasswordAndUsername, loginWithUsername } from '../src/services/auth';
+import { AuthContext } from '../src/features/auth/context/AuthContext';
+import { signUpWithEmailPasswordAndUsername, loginWithUsername } from '../src/features/auth/services/authService';
 
 type Mode = 'signin' | 'signup';
 
