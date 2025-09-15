@@ -1,4 +1,29 @@
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { logout } from "@auth/services/authService";
+import { ROUTES } from "@shared/nav/routes";
+
 export default function SettingsPage() {
+  const router = useRouter();
+  const [submitting, setSubmitting] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+
+  const handleLogout = async () => {
+    if (submitting) return;
+    setErr(null);
+    setSubmitting(true);
+    try {
+
+      await logout();
+
+      // Chuyển về trang đăng nhập
+      router.replace(ROUTES.LOGIN);
+    } catch (e: any) {
+      setErr(e?.message ?? "Đăng xuất thất bại, vui lòng thử lại.");
+      setSubmitting(false);
+    }
+  };
+
   return (
     <section className="space-y-4">
       <h1 className="text-xl font-semibold">Cài đặt</h1>
@@ -28,7 +53,18 @@ export default function SettingsPage() {
         </button>
       </div>
 
-      <button className="text-sm text-rose-600 underline">Đăng xuất</button>
+      <div className="pt-2">
+        <button
+          type="button"
+          onClick={handleLogout}
+          disabled={submitting}
+          aria-busy={submitting}
+          className="text-sm text-rose-600 underline disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {submitting ? "Đang đăng xuất..." : "Đăng xuất"}
+        </button>
+        {err && <p className="mt-2 text-sm text-red-500">{err}</p>}
+      </div>
     </section>
   );
 }

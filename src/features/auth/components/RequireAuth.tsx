@@ -1,28 +1,31 @@
+// src/features/auth/components/RequireAuth.tsx
 import { ReactNode, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "@auth/context/AuthContext";
+import { ROUTES } from "@shared/nav/routes";
 
 type RequireAuthProps = {
   children: ReactNode;
-  redirectTo?: string;            // mặc định /login
-  loadingFallback?: ReactNode;    // UI hiển thị khi kiểm tra session
+  /** Mặc định chuyển về /login */
+  redirectTo?: string;
+  /** UI hiển thị khi đang kiểm tra session */
+  loadingFallback?: ReactNode;
 };
 
 export default function RequireAuth({
   children,
-  redirectTo = "/login",
+  redirectTo = ROUTES.LOGIN,
   loadingFallback,
 }: RequireAuthProps) {
   const { user, loading } = useAuth();
   const router = useRouter();
 
-  // Nếu chưa đăng nhập -> chuyển về /login?next=<đường dẫn hiện tại>
+  // Nếu chưa đăng nhập -> chuyển về /login (không kèm ?next)
   useEffect(() => {
     if (!loading && !user) {
-      const next = encodeURIComponent(router.asPath || "/");
-      router.replace(`${redirectTo}?next=${next}`);
+      router.replace(redirectTo);
     }
-  }, [loading, user, router, redirectTo]);
+  }, [loading, user, redirectTo, router]);
 
   if (loading) {
     return (

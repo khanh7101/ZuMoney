@@ -14,8 +14,6 @@ type Mode = "signin" | "signup";
 export default function LoginPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
-  const next =
-    typeof router.query.next === "string" ? router.query.next : undefined;
 
   const [mode, setMode] = useState<Mode>("signin");
 
@@ -33,12 +31,9 @@ export default function LoginPage() {
   const [msg, setMsg] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
 
-  // Nếu đã đăng nhập, tự vào trang mặc định (hoặc next)
   useEffect(() => {
-    if (user) {
-      router.replace(next ?? ROUTES.BUDGETS);
-    }
-  }, [user, next, router]);
+    if (user) router.replace(ROUTES.BUDGETS);
+  }, [user, router]);
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,7 +42,7 @@ export default function LoginPage() {
     setSubmitting(true);
     try {
       await loginWithUsername(username.trim(), password);
-      router.replace(next ?? ROUTES.BUDGETS);
+      router.replace(ROUTES.BUDGETS);
     } catch (error: any) {
       const m = error?.message?.toLowerCase?.() ?? "";
       if (m.includes("invalid") || m.includes("credentials")) {
