@@ -2,24 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Reset mặc định */
+/* ------------------------------
+   Safe-area helpers (iOS notch)
+--------------------------------*/
+:root{
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Dùng trên container chính để tránh lấn tai thỏ */
+.pt-safe { padding-top: var(--safe-top); }
+/* Dùng cho nav dính đáy để ôm sát home-indicator */
+.pb-safe { padding-bottom: var(--safe-bottom); }
+/* Chừa chỗ cho bottom nav: 64px (nav) + safe-bottom */
+.pb-nav { padding-bottom: calc(64px + var(--safe-bottom)); }
+/* Spacer chiều cao nav (nếu cần) */
+.h-nav { height: calc(64px + var(--safe-bottom)); }
+
+/* 100vh đúng trên iOS (dynamic viewport) */
+.min-h-dvh { min-height: 100dvh; }
+
+/* ------------------------------
+   Reset cơ bản
+--------------------------------*/
 html, body {
- 
   height: 100%;
+  /* Màu nền & chữ lấy từ Tailwind theme() của bạn */
   background-color: theme('colors.bg');
   color: theme('colors.text');
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Bỏ viền highlight khi chạm trên iOS */
+  -webkit-tap-highlight-color: transparent;
 }
 
-input, select, textarea {
-  color: #0b1020;
+/* Fallback cho iOS rất cũ (nếu Safari chưa hỗ trợ dvh) */
+@supports (-webkit-touch-callout: none) {
+  body { min-height: -webkit-fill-available; }
 }
 
-/* Card */
-.card {
-  @apply bg-card border border-white/10 rounded-xl p-4;
-}
+/* Form input luôn màu chữ tối để dễ đọc trên nền sáng */
+input, select, textarea { color: #0b1020; }
 
-/* Button */
-.btn {
-  @apply bg-accent text-black py-2 px-4 rounded-lg font-semibold hover:opacity-90;
-}
+/* ------------------------------
+   UI helpers của app
+--------------------------------*/
+.card { @apply bg-card border border-white/10 rounded-xl p-4; }
+.btn  { @apply bg-accent text-black py-2 px-4 rounded-lg font-semibold hover:opacity-90; }

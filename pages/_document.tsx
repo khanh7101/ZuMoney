@@ -1,36 +1,27 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+// pages/_document.tsx
+import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html lang="vi">
       <Head>
-        {/* Manifest + Icons */}
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" href="/icons/icon-192.png" />
-        <link rel="apple-touch-icon" href="/icons/icon-180.png" />
-
-        {/* Theme & PWA iOS */}
-        <meta name="theme-color" content="#22c55e" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="ZuMoney" />
-
-        {/* Viewport cho iOS */}
+        {/* Quan trọng: cho phép layout phủ hết màn hình có tai thỏ */}
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
+          content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
+        {/* Màu thanh địa chỉ (Android) + hỗ trợ dark mode */}
+        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
 
-        {/* SEO */}
-        <meta
-          name="description"
-          content="ZuMoney — Personal expenses tracker powered by Supabase"
-        />
+        {/* PWA/iOS status bar “trong suốt” (tuỳ chọn) */}
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </Head>
       <body>
         <Main />
         <NextScript />
       </body>
     </Html>
-  )
+  );
 }
