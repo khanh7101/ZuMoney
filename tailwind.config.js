@@ -6,6 +6,20 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",   // bạn đang dùng /src
     "./app/**/*.{js,ts,jsx,tsx}",   // nếu có App Router
   ],
-  theme: { extend: {} },
+  theme: {
+    extend: {
+      colors: {
+        bg: "#0b1020",
+        card: "#11182a",
+        text: "#e5e7eb",
+        muted: "#94a3b8",
+        accent: "#22c55e",
+      },
+      borderRadius: {
+        xl: "1rem",    // giống card
+        lg: "0.75rem", // giống button
+      },
+    },
+  },
   plugins: [],
 };
