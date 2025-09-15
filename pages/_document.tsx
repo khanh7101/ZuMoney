@@ -1,2 +1,36 @@
-import { Html,Head,Main,NextScript } from 'next/document'
-export default function Document(){return(<Html lang='en'><Head><link rel='manifest' href='/manifest.json'/><link rel='icon' href='/icons/icon-192.png'/><link rel='apple-touch-icon' href='/icons/icon-192.png'/><meta name='theme-color' content='#22c55e'/><meta name='apple-mobile-web-app-capable' content='yes'/><meta name='apple-mobile-web-app-status-bar-style' content='black-translucent'/><meta name='apple-mobile-web-app-title' content='ZuMoney'/><meta name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover'/><meta name='description' content='ZuMoney — Personal expenses tracker powered by Supabase'/></Head><body><Main/><NextScript/></body></Html>)}
+import { Html, Head, Main, NextScript } from 'next/document'
+
+export default function Document() {
+  return (
+    <Html lang="en">
+      <Head>
+        {/* Manifest + Icons */}
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/icons/icon-192.png" />
+        <link rel="apple-touch-icon" href="/icons/icon-180.png" />
+
+        {/* Theme & PWA iOS */}
+        <meta name="theme-color" content="#22c55e" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="ZuMoney" />
+
+        {/* Viewport cho iOS */}
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
+        />
+
+        {/* SEO */}
+        <meta
+          name="description"
+          content="ZuMoney — Personal expenses tracker powered by Supabase"
+        />
+      </Head>
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  )
+}
