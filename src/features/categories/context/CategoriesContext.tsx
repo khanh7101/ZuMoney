@@ -7,8 +7,8 @@ import {
   useState,
   ReactNode,
 } from "react";
-import { supabase } from "../../../lib/supabaseClient";
-import { useAuth } from "../../auth/context/AuthContext";
+import { supabase } from "@lib/supabaseClient";
+import { useAuth } from "@auth/context/AuthContext";
 
 /**
  * Tối thiểu cho CategoryGroup.

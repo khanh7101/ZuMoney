@@ -1,9 +1,9 @@
 // components/wallets/WalletForm.tsx
 import { useState } from "react";
-import Button from "../../../shared/ui/Button";
-import Card from "../../../shared/ui/Card";
+import Button from "@ui/Button";
+import Card from "@ui/Card";
 import { createWallet } from "../services/walletService";
-import { useAuth } from "../../auth/context/AuthContext";
+import { useAuth } from "@auth/context/AuthContext";
 import { useWallets } from "../context/WalletsContext";
 
 export default function WalletForm() {

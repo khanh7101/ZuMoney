@@ -1,5 +1,5 @@
-import { supabase } from '../../../lib/supabaseClient';
-import type { Tx, TransactionType } from '../../../types';
+import { supabase } from '@lib/supabaseClient';
+import type { Tx, TransactionType } from '@shared/types';
 
 export async function listTransactions(limit = 50): Promise<Tx[]> {
   const { data, error } = await supabase

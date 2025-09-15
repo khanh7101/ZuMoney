@@ -1,5 +1,5 @@
-import RequireAuth from "../auth/components/RequireAuth";
-import { WalletsProvider } from "../wallets/context/WalletsContext";
+import RequireAuth from "@auth/components/RequireAuth";
+import { WalletsProvider } from "@wallets/context/WalletsContext";
 import { TransactionsProvider } from "./context/TransactionsContext";
 import TransactionForm from "./components/TransactionForm";
 import TransactionList from "./components/TransactionList";

@@ -1,5 +1,5 @@
-import { supabase } from '../../../lib/supabaseClient';
-import type { Wallet } from '../../../types';
+import { supabase } from '@lib/supabaseClient';
+import type { Wallet } from '@shared/types';
 
 export async function listWallets(): Promise<Wallet[]> {
   const { data, error } = await supabase.from('wallets').select('*').order('id', { ascending: true });

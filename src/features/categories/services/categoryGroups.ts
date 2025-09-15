@@ -1,5 +1,5 @@
-import { supabase } from '../../../lib/supabaseClient';
-import type { CategoryGroup } from '../../../types';
+import { supabase } from '@lib/supabaseClient';
+import type { CategoryGroup } from '@shared/types';
 
 export async function listCategoryGroups(): Promise<CategoryGroup[]> {
   const { data, error } = await supabase.from('category_groups').select('*').order('id', { ascending: true });

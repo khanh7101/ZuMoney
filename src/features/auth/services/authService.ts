@@ -1,5 +1,5 @@
 // src/services/auth.ts
-import { supabase } from '../../../lib/supabaseClient';
+import { supabase } from '@lib/supabaseClient';
 
 export async function loginWithUsername(username: string, password: string) {
   const { data, error } = await supabase.rpc('email_by_username', { p_username: username });

@@ -1,111 +1,143 @@
-import { useContext, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { AuthContext } from '../src/features/auth/context/AuthContext';
-import { signUpWithEmailPasswordAndUsername, loginWithUsername } from '../src/features/auth/services/authService';
+// pages/login.tsx
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
-type Mode = 'signin' | 'signup';
+import { useAuth } from "@auth/context/AuthContext";
+import {
+  signUpWithEmailPasswordAndUsername,
+  loginWithUsername,
+} from "@auth/services/authService";
+import { ROUTES } from "@shared/nav/routes";
+
+type Mode = "signin" | "signup";
 
 export default function LoginPage() {
-  const session = useContext(AuthContext);
+  const { user, loading } = useAuth();
   const router = useRouter();
+  const next =
+    typeof router.query.next === "string" ? router.query.next : undefined;
 
-  const [mode, setMode] = useState<Mode>('signin');
+  const [mode, setMode] = useState<Mode>("signin");
 
-  // Sign in fields (username + password)
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  // Sign in fields
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-  // Sign up fields (email for verify once)
-  const [regEmail, setRegEmail] = useState('');
-  const [regUsername, setRegUsername] = useState('');
-  const [regPassword, setRegPassword] = useState('');
-  const [regPassword2, setRegPassword2] = useState('');
+  // Sign up fields
+  const [regEmail, setRegEmail] = useState("");
+  const [regUsername, setRegUsername] = useState("");
+  const [regPassword, setRegPassword] = useState("");
+  const [regPassword2, setRegPassword2] = useState("");
 
-  const [loading, setLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
 
+  // Nếu đã đăng nhập, tự vào trang mặc định (hoặc next)
   useEffect(() => {
-    if (session) router.replace('/');
-  }, [session, router]);
+    if (user) {
+      router.replace(next ?? ROUTES.BUDGETS);
+    }
+  }, [user, next, router]);
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    setMsg(null); setErr(null);
-    setLoading(true);
+    setMsg(null);
+    setErr(null);
+    setSubmitting(true);
     try {
       await loginWithUsername(username.trim(), password);
-      router.replace('/');
+      router.replace(next ?? ROUTES.BUDGETS);
     } catch (error: any) {
-      const m = error?.message?.toLowerCase?.() ?? '';
-      if (m.includes('invalid') || m.includes('credentials')) {
-        setErr('Sai username hoặc mật khẩu.');
-      } else if (m.includes('confirm')) {
-        setErr('Email chưa xác thực. Hãy xác thực email đã đăng ký trước.');
+      const m = error?.message?.toLowerCase?.() ?? "";
+      if (m.includes("invalid") || m.includes("credentials")) {
+        setErr("Sai username hoặc mật khẩu.");
+      } else if (m.includes("confirm")) {
+        setErr("Email chưa xác thực. Hãy xác thực email đã đăng ký trước.");
       } else {
-        setErr(error?.message ?? 'Đăng nhập thất bại');
+        setErr(error?.message ?? "Đăng nhập thất bại");
       }
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   };
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    setMsg(null); setErr(null);
+    setMsg(null);
+    setErr(null);
 
     if (!regEmail || !regUsername || !regPassword) {
-      setErr('Vui lòng nhập username, email và mật khẩu.');
+      setErr("Vui lòng nhập username, email và mật khẩu.");
       return;
     }
     if (regPassword.length < 6) {
-      setErr('Mật khẩu tối thiểu 6 ký tự.');
+      setErr("Mật khẩu tối thiểu 6 ký tự.");
       return;
     }
     if (regPassword !== regPassword2) {
-      setErr('Xác nhận mật khẩu không khớp.');
+      setErr("Xác nhận mật khẩu không khớp.");
       return;
     }
 
-    setLoading(true);
+    setSubmitting(true);
     try {
-      const origin = typeof window !== 'undefined' ? window.location.origin : undefined;
-      await signUpWithEmailPasswordAndUsername(regEmail.trim(), regPassword, regUsername.trim(), origin);
-      setMsg('Đăng ký thành công! Hãy kiểm tra email để XÁC THỰC (1 lần). Sau đó bạn có thể đăng nhập bằng username + password.');
-      setMode('signin');
+      const origin =
+        typeof window !== "undefined" ? window.location.origin : undefined;
+      await signUpWithEmailPasswordAndUsername(
+        regEmail.trim(),
+        regPassword,
+        regUsername.trim(),
+        origin
+      );
+      setMsg(
+        "Đăng ký thành công! Hãy kiểm tra email để XÁC THỰC (1 lần). Sau đó bạn có thể đăng nhập bằng username + password."
+      );
+      setMode("signin");
     } catch (error: any) {
-      setErr(error?.message ?? 'Đăng ký thất bại');
+      setErr(error?.message ?? "Đăng ký thất bại");
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   };
+
+  // Có thể hiển thị loading nhẹ khi đang kiểm tra session
+  // if (loading) return <div className="min-h-screen grid place-items-center">Đang tải…</div>;
 
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="card w-full max-w-md">
-        <h1 className="text-2xl font-bold mb-2">ZuMoney</h1>
-        <p className="text-sm text-[var(--muted)] mb-4">Đăng nhập bằng username & mật khẩu</p>
+        <h1 className="mb-2 text-2xl font-bold">ZuMoney</h1>
+        <p className="mb-4 text-sm text-[var(--muted)]">
+          Đăng nhập bằng username & mật khẩu
+        </p>
 
         {/* Tabs */}
-        <div className="flex gap-2 mb-4">
+        <div className="mb-4 flex gap-2">
           <button
-            className={`px-3 py-1 rounded ${mode === 'signin' ? 'bg-white/10' : 'bg-white/5'}`}
-            onClick={() => setMode('signin')}
+            type="button"
+            className={`px-3 py-1 rounded ${
+              mode === "signin" ? "bg-white/10" : "bg-white/5"
+            }`}
+            onClick={() => setMode("signin")}
           >
             Sign in
           </button>
           <button
-            className={`px-3 py-1 rounded ${mode === 'signup' ? 'bg-white/10' : 'bg-white/5'}`}
-            onClick={() => setMode('signup')}
+            type="button"
+            className={`px-3 py-1 rounded ${
+              mode === "signup" ? "bg-white/10" : "bg-white/5"
+            }`}
+            onClick={() => setMode("signup")}
           >
             Sign up
           </button>
         </div>
 
-        {mode === 'signin' ? (
+        {mode === "signin" ? (
           <form onSubmit={handleSignIn}>
             <input
-              className="w-full p-3 rounded mb-3"
+              className="mb-3 w-full rounded p-3"
               type="text"
               placeholder="Username"
               value={username}
@@ -114,7 +146,7 @@ export default function LoginPage() {
               required
             />
             <input
-              className="w-full p-3 rounded mb-3"
+              className="mb-3 w-full rounded p-3"
               type="password"
               placeholder="Mật khẩu"
               value={password}
@@ -122,14 +154,14 @@ export default function LoginPage() {
               autoComplete="current-password"
               required
             />
-            <button className="btn w-full" type="submit" disabled={loading}>
-              {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
+            <button className="btn w-full" type="submit" disabled={submitting}>
+              {submitting ? "Đang đăng nhập..." : "Đăng nhập"}
             </button>
           </form>
         ) : (
           <form onSubmit={handleSignUp}>
             <input
-              className="w-full p-3 rounded mb-3"
+              className="mb-3 w-full rounded p-3"
               type="text"
               placeholder="Username (duy nhất)"
               value={regUsername}
@@ -137,7 +169,7 @@ export default function LoginPage() {
               required
             />
             <input
-              className="w-full p-3 rounded mb-3"
+              className="mb-3 w-full rounded p-3"
               type="email"
               placeholder="Email (để xác thực 1 lần)"
               value={regEmail}
@@ -145,7 +177,7 @@ export default function LoginPage() {
               required
             />
             <input
-              className="w-full p-3 rounded mb-3"
+              className="mb-3 w-full rounded p-3"
               type="password"
               placeholder="Mật khẩu (>= 6 ký tự)"
               value={regPassword}
@@ -154,7 +186,7 @@ export default function LoginPage() {
               required
             />
             <input
-              className="w-full p-3 rounded mb-3"
+              className="mb-3 w-full rounded p-3"
               type="password"
               placeholder="Xác nhận mật khẩu"
               value={regPassword2}
@@ -162,14 +194,14 @@ export default function LoginPage() {
               autoComplete="new-password"
               required
             />
-            <button className="btn w-full" type="submit" disabled={loading}>
-              {loading ? 'Đang tạo tài khoản...' : 'Đăng ký'}
+            <button className="btn w-full" type="submit" disabled={submitting}>
+              {submitting ? "Đang tạo tài khoản..." : "Đăng ký"}
             </button>
           </form>
         )}
 
-        {msg && <p className="text-emerald-400 text-sm mt-3">{msg}</p>}
-        {err && <p className="text-red-400 text-sm mt-3">{err}</p>}
+        {msg && <p className="mt-3 text-sm text-emerald-400">{msg}</p>}
+        {err && <p className="mt-3 text-sm text-red-400">{err}</p>}
       </div>
     </div>
   );

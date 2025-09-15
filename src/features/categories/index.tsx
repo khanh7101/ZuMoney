@@ -1,7 +1,7 @@
-import RequireAuth from "../auth/components/RequireAuth";
-import { CategoriesProvider } from "../categories/context/CategoriesContext";
-import CategoryGroupForm from "../categories/components/CategoryGroupForm";
-import CategoryForm from "../categories/components/CategoryForm";
+import RequireAuth from "@auth/components/RequireAuth";
+import { CategoriesProvider } from "@categories/context/CategoriesContext";
+import CategoryGroupForm from "@categories/components/CategoryGroupForm";
+import CategoryForm from "@categories/components/CategoryForm";
 
 export default function CategoriesPage() {
   return (

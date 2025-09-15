@@ -1,9 +1,9 @@
 // src/context/TransactionsContext.tsx
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
-import { supabase } from "../../../lib/supabaseClient";
-import { useWallets } from "../../wallets/context/WalletsContext";
-import type { Tx } from "../../../types";
+import { supabase } from "@lib/supabaseClient";
+import { useWallets } from "@wallets/context/WalletsContext";
+import type { Tx } from "@shared/types";
 
 type TransactionsContextValue = {
   tx: Tx[];

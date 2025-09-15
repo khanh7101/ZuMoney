@@ -1,11 +1,11 @@
 // components/transactions/TransactionForm.tsx
 import { useEffect, useState } from "react";
-import Button from "../../../shared/ui/Button";
-import Card from "../../../shared/ui/Card";
-import type { Category, TransactionType } from "../../../types";
+import Button from "@ui/Button";
+import Card from "@ui/Card";
+import type { Category, TransactionType } from "@shared/types";
 import { createTransaction } from "../services/transactionService";
-import { useWallets } from "../../wallets/context/WalletsContext";
-import { supabase } from "../../../lib/supabaseClient";
+import { useWallets } from "@wallets/context/WalletsContext";
+import { supabase } from "@lib/supabaseClient";
 
 function nowLocalForInput() {
   const n = new Date();

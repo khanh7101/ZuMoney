@@ -1,13 +1,12 @@
-// components/nav/AddTransactionSheet.tsx
 import { useEffect } from "react";
-import TransactionForm from "../../features/transactions/components/TransactionForm";
-import { WalletsProvider } from "../../features/wallets/context/WalletsContext";
+import TransactionForm from "@transactions/components/TransactionForm";
+import { WalletsProvider } from "@wallets/context/WalletsContext";
 
 export default function AddTransactionSheet({
   open,
   onClose,
 }: { open: boolean; onClose: () => void }) {
-  // khóa scroll khi mở sheet
+  // Khoá scroll khi mở sheet
   useEffect(() => {
     if (!open) return;
     const prev = document.body.style.overflow;
@@ -19,20 +18,20 @@ export default function AddTransactionSheet({
 
   return (
     <div className="fixed inset-0 z-[60]">
-      {/* backdrop */}
+      {/* Backdrop */}
       <button
         aria-label="Close"
         className="absolute inset-0 bg-black/40"
         onClick={onClose}
       />
-      {/* sheet */}
+      {/* Sheet */}
       <div
         className="absolute inset-x-0 bottom-0 rounded-t-2xl bg-white p-4 shadow-2xl"
         style={{ paddingBottom: `calc(env(safe-area-inset-bottom,0px) + 16px)` }}
       >
         <div className="mx-auto h-1.5 w-10 rounded-full bg-gray-300" />
         <div className="mt-3">
-          {/* Đảm bảo TransactionForm có data ví bằng WalletsProvider */}
+          {/* Bọc để TransactionForm có dữ liệu ví */}
           <WalletsProvider>
             <TransactionForm />
           </WalletsProvider>

@@ -1,8 +1,8 @@
 // components/categories/CategoryGroupForm.tsx
 import { useState } from "react";
-import Button from "../../../shared/ui/Button";
-import Card from "../../../shared/ui/Card";
-import { useAuth } from "../../auth/context/AuthContext";
+import Button from "@ui/Button";
+import Card from "@ui/Card";
+import { useAuth } from "@auth/context/AuthContext";
 import { useCategories } from "../context/CategoriesContext";
 import { createCategoryGroup } from "../services/categoryGroups"; // giữ nguyên service hiện có
 

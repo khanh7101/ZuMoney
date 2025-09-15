@@ -1,9 +1,9 @@
 // components/transactions/TransactionList.tsx
 import { useEffect, useMemo, useState } from "react";
-import type { Category } from "../../../types";
+import type { Category } from "@shared/types";
 import { useTransactions } from "../context/TransactionsContext";
-import { useWallets } from "../../wallets/context/WalletsContext";
-import { supabase } from "../../../lib/supabaseClient";
+import { useWallets } from "@wallets/context/WalletsContext";
+import { supabase } from "@lib/supabaseClient";
 
 export default function TransactionList() {
   const { tx } = useTransactions();

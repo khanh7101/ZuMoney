@@ -1,4 +1,3 @@
-// components/nav/icons.tsx
 export const BudgetIcon = (p: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" width="1em" height="1em" {...p}>
     <path d="M3 7h14a4 4 0 1 1 0 8H3z" fill="currentColor" opacity=".15" />

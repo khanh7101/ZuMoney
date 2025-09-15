@@ -1,17 +1,18 @@
-// components/nav/BottomNav.tsx
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
-import { BudgetIcon, WalletIcon, PlusIcon, ChartIcon, SettingsIcon } from "./icons";
-import AddTransactionSheet from "../../shared/nav/AddTransactionSheet";
+import { BudgetIcon, WalletIcon, PlusIcon, ChartIcon, SettingsIcon } from "@nav/icons";
+import AddTransactionSheet from "@nav/AddTransactionSheet";
+import { ROUTES } from "@nav/routes";
 
-type Item = { label: string; href?: string; icon: (p: any) => JSX.Element; };
+type IconComp = (p: React.SVGProps<SVGSVGElement>) => JSX.Element;
+type Item = { label: string; href?: string; icon: IconComp };
 
 const ITEMS: Item[] = [
-  { label: "Ngân sách", href: "/budgets", icon: BudgetIcon },
-  { label: "Ví",        href: "/wallets", icon: WalletIcon },
-  { label: "Thêm",                   icon: PlusIcon }, // giữa: không href -> mở sheet
-  { label: "Phân tích", href: "/analytics", icon: ChartIcon },
-  { label: "Cài đặt",   href: "/settings",  icon: SettingsIcon },
+  { label: "Ngân sách", href: ROUTES.BUDGETS, icon: BudgetIcon },
+  { label: "Ví",        href: ROUTES.WALLETS, icon: WalletIcon },
+  { label: "Thêm",                           icon: PlusIcon }, // giữa: không href -> mở sheet
+  { label: "Phân tích", href: ROUTES.ANALYTICS, icon: ChartIcon },
+  { label: "Cài đặt",   href: ROUTES.SETTINGS,  icon: SettingsIcon },
 ];
 
 export default function BottomNav() {
@@ -24,12 +25,12 @@ export default function BottomNav() {
     [path]
   );
 
-  // đóng sheet khi route chuyển
+  // Đóng sheet khi đổi route
   useEffect(() => { setOpenAdd(false); }, [path]);
 
   return (
     <>
-      {/* thanh nav */}
+      {/* Thanh nav */}
       <nav
         className="fixed inset-x-0 bottom-0 z-50 border-t bg-white/95 backdrop-blur md:hidden"
         style={{ paddingBottom: `env(safe-area-inset-bottom, 0px)` }}
@@ -38,9 +39,9 @@ export default function BottomNav() {
           {ITEMS.map((it, idx) => {
             const Icon = it.icon;
             const active = isActive(it.href);
-            const common =
-              "flex flex-col items-center justify-center gap-0.5 text-[11px]";
-            // ô giữa: nút nổi
+            const common = "flex flex-col items-center justify-center gap-0.5 text-[11px]";
+
+            // Ô giữa: nút nổi “Thêm”
             if (idx === 2) {
               return (
                 <div key={idx} className="relative flex items-center justify-center">
@@ -55,6 +56,7 @@ export default function BottomNav() {
                 </div>
               );
             }
+
             return (
               <button
                 key={idx}

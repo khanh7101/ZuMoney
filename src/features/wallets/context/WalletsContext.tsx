@@ -1,9 +1,9 @@
 // src/context/WalletsContext.tsx
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
-import { supabase } from "../../../lib/supabaseClient";
-import { useAuth } from "../../auth/context/AuthContext";
-import type { Wallet } from "../../../types";
+import { supabase } from "@lib/supabaseClient";
+import { useAuth } from "@auth/context/AuthContext";
+import type { Wallet } from "@shared/types";
 
 type WalletsContextValue = {
   wallets: Wallet[];

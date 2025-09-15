@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import type { Session, User } from "@supabase/supabase-js";
-import { supabase } from "../../../lib/supabaseClient"; // chỉnh path nếu khác
+import { supabase } from "@lib/supabaseClient"; // chỉnh path nếu khác
 
 // Giá trị context đã kiểu hóa rõ ràng
 type AuthContextValue = {
