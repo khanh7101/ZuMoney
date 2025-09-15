@@ -32,7 +32,7 @@ export default function SettingsPage() {
   return (
     <section className="space-y-5">
 
-      <h1 className="text-xl font-semibold">Cài đặt</h1>
+      <h1 className="text-4xl font-semibold">Cài đặt</h1>
 
       <div className="rounded-2xl border bg-white p-4 shadow-sm">
         <div className="flex items-center gap-3">
