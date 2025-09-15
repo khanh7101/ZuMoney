@@ -15,7 +15,7 @@ export default function ContactPage() {
         </p>
 
         <a
-          href="mailto:dangbanlamapp@gmail.com"
+          href="mailto:kingdom.dn2000@gmail.com"
           className="mb-4 flex items-center justify-between rounded-xl bg-amber-50 px-4 py-4 text-amber-800 hover:bg-amber-100"
         >
           <div className="flex items-center gap-3">

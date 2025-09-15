@@ -72,8 +72,8 @@ export default function BottomNav() {
         </div>
       </nav>
 
-      {/* chừa chỗ để nội dung không bị che */}
-      <div className="h-20 md:hidden" aria-hidden />
+      {/* chừa chỗ để nội dung không bị che
+      <div className="h-20 md:hidden" aria-hidden /> */}
 
       {/* bottom sheet thêm giao dịch */}
       <AddTransactionSheet open={openAdd} onClose={() => setOpenAdd(false)} />

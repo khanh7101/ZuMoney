@@ -24,7 +24,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <AppProviders>
-      <main className="min-h-dvh pt-safe pb-nav mx-auto max-w-3xl px-4 md:max-w-6xl">
+      <main className="min-h-dvh pt-safe pb-nav mx-auto max-w-3xl px-4 md:max-w-6xl overflow-auto no-scrollbar">
         <Component {...pageProps} />
       </main>
       {!hideNav && <BottomNav />}
