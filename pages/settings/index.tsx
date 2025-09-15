@@ -30,7 +30,7 @@ export default function SettingsPage() {
   };
 
   return (
-    <section className="space-y-5">
+    <section className="space-y-5 pt-10">
 
       <h1 className="text-4xl font-semibold">Cài đặt</h1>
 

@@ -14,35 +14,57 @@
 .pt-safe { padding-top: var(--safe-top); }
 /* Dùng cho nav dính đáy để ôm sát home-indicator */
 .pb-safe { padding-bottom: var(--safe-bottom); }
-/* Chừa chỗ cho bottom nav: 64px (nav) + safe-bottom */
+/* Chừa chỗ cho bottom nav: ~64px (nav) + safe-bottom */
 .pb-nav { padding-bottom: calc(64px + var(--safe-bottom)); }
-/* Spacer chiều cao nav (nếu cần) */
+/* Nếu cần spacer chiều cao nav */
 .h-nav { height: calc(64px + var(--safe-bottom)); }
 
 /* 100vh đúng trên iOS (dynamic viewport) */
 .min-h-dvh { min-height: 100dvh; }
 
 /* ------------------------------
-   Reset cơ bản
+   Reset & nền mặc định
 --------------------------------*/
 html, body {
   height: 100%;
-  /* Màu nền & chữ lấy từ Tailwind theme() của bạn */
   background-color: theme('colors.bg');
   color: theme('colors.text');
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Bỏ viền highlight khi chạm trên iOS */
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent; /* bỏ highlight khi chạm trên iOS */
 }
 
-/* Fallback cho iOS rất cũ (nếu Safari chưa hỗ trợ dvh) */
+/* Fallback cho iOS rất cũ (khi chưa có dvh) */
 @supports (-webkit-touch-callout: none) {
   body { min-height: -webkit-fill-available; }
 }
 
-/* Form input luôn màu chữ tối để dễ đọc trên nền sáng */
+/* Input luôn chữ tối dễ đọc khi nền sáng */
 input, select, textarea { color: #0b1020; }
+
+/* ------------------------------
+   Ẩn thanh cuộn nhưng vẫn cuộn được
+   (chỉ áp dụng trên thiết bị cảm ứng)
+--------------------------------*/
+@media (pointer: coarse) {
+  html, body {
+    -ms-overflow-style: none;   /* IE/Edge cũ */
+    scrollbar-width: none;      /* Firefox */
+  }
+  /* Chrome/Safari/WebKit */
+  *::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+  }
+}
+
+/* ------------------------------
+   Chặn double-tap zoom trên các control
+   (bản ngăn ngừa nhẹ bằng CSS)
+--------------------------------*/
+a, button, input, select, textarea {
+  touch-action: manipulation;
+}
 
 /* ------------------------------
    UI helpers của app

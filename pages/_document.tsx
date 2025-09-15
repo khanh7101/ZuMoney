@@ -8,13 +8,14 @@ export default function Document() {
         {/* Quan trọng: cho phép layout phủ hết màn hình có tai thỏ */}
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1, viewport-fit=cover"
+          content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no"
         />
-        {/* Màu thanh địa chỉ (Android) + hỗ trợ dark mode */}
+
+        {/* Màu thanh địa chỉ (Android) + dark mode */}
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
 
-        {/* PWA/iOS status bar “trong suốt” (tuỳ chọn) */}
+        {/* PWA/iOS status bar trong suốt (tuỳ chọn) */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </Head>
