@@ -1,6 +1,6 @@
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
+ /* @tailwind base; */
+/* @tailwind components; */
+/* @tailwind utilities; */ 
 
 /* ──────────────────────────────────────────
    Safe-area helpers (iOS notch / home indicator)
@@ -54,25 +54,25 @@ html, body {
 } */
 
 /* Form input luôn chữ tối để dễ đọc trên nền sáng */
-/* input, select, textarea { color: #0b1020; } */
+input, select, textarea { color: #0b1020; }
 
 /* ──────────────────────────────────────────
    Ẩn scrollbar cho container cuộn cụ thể
    Dùng class .no-scrollbar trên phần tử cần cuộn
    ────────────────────────────────────────── */
-/* .no-scrollbar { */
-  /* -ms-overflow-style: none;   */
+.no-scrollbar { 
+  -ms-overflow-style: none;  
    /* IE/Edge cũ */
-  /* scrollbar-width: none;       */
+  scrollbar-width: none;      
   /* Firefox */
-/* } */
-/* .no-scrollbar::-webkit-scrollbar { */
-  /* display: none;               */
+ }
+.no-scrollbar::-webkit-scrollbar {
+  display: none;              
   /* Chrome/Safari/WebKit */
-/* } */
+}
 
 /* Ngăn double-tap zoom cho control tương tác */
-/* a, button, input, select, textarea { touch-action: manipulation; } */
+a, button, input, select, textarea { touch-action: manipulation; }
 
 /* ──────────────────────────────────────────
    UI helpers của app
