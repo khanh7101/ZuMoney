@@ -31,9 +31,7 @@ export default function BottomNav() {
   return (
     <>
       <nav
-        className="fixed bottom-0 left-0 right-0 z-[100] border-t border-gray-200
-                   bg-white supports-[backdrop-filter]:bg-white/90
-                   supports-[backdrop-filter]:backdrop-blur pb-safe md:hidden"
+        className="fixed inset-x-0 bottom-0 z-50 border-t bg-white pb-safe"
       >
         {/* min-h = var(--nav-h) để khung nav không bị co */}
         <div className="relative mx-auto grid max-w-3xl grid-cols-5 px-3 py-2"

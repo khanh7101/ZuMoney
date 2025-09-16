@@ -12,7 +12,7 @@ type AuthContextValue = {
 // Dùng `| undefined` để ép buộc phải nằm trong Provider (giúp TS an toàn hơn)
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
+export function  AuthProvider({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
 

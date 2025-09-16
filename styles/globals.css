@@ -1,6 +1,6 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 /* ──────────────────────────────────────────
    Safe-area helpers (iOS notch / home indicator)
@@ -9,18 +9,21 @@
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   /* Chiều cao nav THỰC TẾ: nút + có ring 8px => 56 + 16 = 72 */
-  --nav-h: 72px;
+  /* --nav-h: 72px; */
 }
 
 /* Tránh nội dung bị “ăn” vào tai thỏ */
 .pt-safe { padding-top: var(--safe-top); }
-/* Đệm đáy cho thanh nav dính đáy */
-.pb-nav { padding-bottom: calc(var(--nav-h) + var(--safe-bottom)); }
-/* spacer/đo nav khi cần */
-.h-nav  { height: calc(var(--nav-h) + var(--safe-bottom)); }
-
 /* Đệm safe-area cho nav (nội dung/nav-bg phủ cả home-indicator) */
 .pb-safe { padding-bottom: var(--safe-bottom); }
+/* Đệm đáy cho thanh nav dính đáy */
+.pb-nav {
+  padding-bottom: calc(64px + var(--safe-bottom));
+}
+/* spacer/đo nav khi cần */
+.h-nav {
+  height: calc(64px + var(--safe-bottom));
+}
 
 /* 100vh đúng trên iOS (dynamic viewport) */
 .min-h-dvh { min-height: 100dvh; }
@@ -28,44 +31,51 @@
 /* ──────────────────────────────────────────
    Reset & nền mặc định
    ────────────────────────────────────────── */
-html, body {
-  height: 100%;
-  overflow: hidden;                         /* Chặn body scroll để ẩn scrollbar hệ thống */
-  background-color: theme('colors.bg');     /* dùng màu trong tailwind.config */
-  color: theme('colors.text');
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-tap-highlight-color: transparent; /* bỏ flash xanh khi chạm iOS */
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-  overscroll-behavior-y: none;              /* hạn chế bounce chaining */
-}
+/* html, body { */
+  /* height: 100%; */
+  /* overflow: hidden;                         */
+   /* Chặn body scroll để ẩn scrollbar hệ thống */
+  /* background-color: theme('colors.bg');      */
+  /* dùng màu trong tailwind.config */
+  /* color: theme('colors.text'); */
+  /* -webkit-font-smoothing: antialiased; */
+  /* -moz-osx-font-smoothing: grayscale; */
+  /* -webkit-tap-highlight-color: transparent;  */
+  /* bỏ flash xanh khi chạm iOS */
+  /* -webkit-text-size-adjust: 100%; */
+  /* text-size-adjust: 100%; */
+  /* overscroll-behavior-y: none;               */
+  /* hạn chế bounce chaining */
+/* } */
 
 /* Fallback cho iOS rất cũ (khi chưa có dvh) */
-@supports (-webkit-touch-callout: none) {
+/* @supports (-webkit-touch-callout: none) {
   body { min-height: -webkit-fill-available; }
-}
+} */
 
 /* Form input luôn chữ tối để dễ đọc trên nền sáng */
-input, select, textarea { color: #0b1020; }
+/* input, select, textarea { color: #0b1020; } */
 
 /* ──────────────────────────────────────────
    Ẩn scrollbar cho container cuộn cụ thể
    Dùng class .no-scrollbar trên phần tử cần cuộn
    ────────────────────────────────────────── */
-.no-scrollbar {
-  -ms-overflow-style: none;   /* IE/Edge cũ */
-  scrollbar-width: none;      /* Firefox */
-}
-.no-scrollbar::-webkit-scrollbar {
-  display: none;              /* Chrome/Safari/WebKit */
-}
+/* .no-scrollbar { */
+  /* -ms-overflow-style: none;   */
+   /* IE/Edge cũ */
+  /* scrollbar-width: none;       */
+  /* Firefox */
+/* } */
+/* .no-scrollbar::-webkit-scrollbar { */
+  /* display: none;               */
+  /* Chrome/Safari/WebKit */
+/* } */
 
 /* Ngăn double-tap zoom cho control tương tác */
-a, button, input, select, textarea { touch-action: manipulation; }
+/* a, button, input, select, textarea { touch-action: manipulation; } */
 
 /* ──────────────────────────────────────────
    UI helpers của app
    ────────────────────────────────────────── */
-.card { @apply bg-card border border-white/10 rounded-xl p-4; }
-.btn  { @apply bg-accent text-black py-2 px-4 rounded-lg font-semibold hover:opacity-90; }
+/* .card { @apply bg-card border border-white/10 rounded-xl p-4; } */
+/* .btn  { @apply bg-accent text-black py-2 px-4 rounded-lg font-semibold hover:opacity-90; } */
