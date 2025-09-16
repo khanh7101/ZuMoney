@@ -30,26 +30,29 @@ export default function BottomNav() {
 
   return (
     <>
-      {/* Thanh nav */}
       <nav
-        className="fixed inset-x-0 bottom-0 z-50 bg-white/95 pb-safe"
-        // style={{ paddingBottom: `env(safe-area-inset-bottom, 0px)` }}
+        className="fixed bottom-0 left-0 right-0 z-[100] border-t border-gray-200
+                   bg-white supports-[backdrop-filter]:bg-white/90
+                   supports-[backdrop-filter]:backdrop-blur pb-safe md:hidden"
       >
-        <div className="relative mx-auto grid max-w-3xl grid-cols-5 px-3 py-2">
+        {/* min-h = var(--nav-h) để khung nav không bị co */}
+        <div className="relative mx-auto grid max-w-3xl grid-cols-5 px-3 py-2"
+             style={{ minHeight: "var(--nav-h)" }}>
           {ITEMS.map((it, idx) => {
             const Icon = it.icon;
             const active = isActive(it.href);
             const common = "flex flex-col items-center justify-center gap-0.5 text-[11px]";
 
-            // Ô giữa: nút nổi “Thêm”
             if (idx === 2) {
               return (
-                <div key={idx} className="relative flex items-center justify-center">
+                <div key={idx} className="relative flex items-center justify-center overflow-visible">
                   <button
                     type="button"
                     aria-label="Thêm giao dịch"
                     onClick={() => setOpenAdd(true)}
-                    className="grid h-14 w-14 -translate-y-6 place-items-center rounded-full bg-amber-400 text-gray-900 shadow-[0_8px_24px_rgba(0,0,0,.18)] ring-8 ring-white"
+                    className="grid h-14 w-14 -translate-y-6 place-items-center rounded-full
+                               bg-amber-400 text-gray-900 shadow-[0_8px_24px_rgba(0,0,0,.18)]
+                               ring-8 ring-white"
                   >
                     <Icon className="h-5 w-5" />
                   </button>
@@ -72,10 +75,6 @@ export default function BottomNav() {
         </div>
       </nav>
 
-      {/* chừa chỗ để nội dung không bị che
-      <div className="h-20 md:hidden" aria-hidden /> */}
-
-      {/* bottom sheet thêm giao dịch */}
       <AddTransactionSheet open={openAdd} onClose={() => setOpenAdd(false)} />
     </>
   );

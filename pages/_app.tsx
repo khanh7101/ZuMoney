@@ -1,9 +1,9 @@
 // pages/_app.tsx
 import type { AppProps } from "next/app";
-import "../styles/globals.css";
+import "@styles/globals.css"; // nếu chưa khai alias @styles thì dùng "../styles/globals.css"
 
 import AppProviders from "@providers/AppProviders";
-import BottomNav from "@shared/nav/BottomNav";
+import BottomNav from "@nav/BottomNav";
 import { ROUTES, isProtectedPath } from "@shared/nav/routes";
 import RequireAuth from "@auth/components/RequireAuth";
 
@@ -24,9 +24,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <AppProviders>
-      <main className="min-h-dvh pt-safe pb-nav mx-auto max-w-3xl px-4 md:max-w-6xl overflow-auto no-scrollbar">
-        <Component {...pageProps} />
+      {/* MAIN là phần tử cuộn, đã chừa chỗ cho bottom nav */}
+      <main className="min-h-dvh pt-safe pb-nav overflow-auto no-scrollbar mx-auto max-w-3xl px-4 md:max-w-6xl">
+        {page}
       </main>
+
       {!hideNav && <BottomNav />}
     </AppProviders>
   );
