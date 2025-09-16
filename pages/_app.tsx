@@ -1,7 +1,6 @@
 // pages/_app.tsx
 import type { AppProps } from "next/app";
-import "@styles/globals.css"; // nếu chưa khai alias @styles thì dùng "../styles/globals.css"
-
+import "../styles/globals.css";
 import AppProviders from "@providers/AppProviders";
 import BottomNav from "@nav/BottomNav";
 import { ROUTES, isProtectedPath } from "@shared/nav/routes";
