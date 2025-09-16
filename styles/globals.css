@@ -31,23 +31,23 @@
 /* ──────────────────────────────────────────
    Reset & nền mặc định
    ────────────────────────────────────────── */
-/* html, body { */
-  /* height: 100%; */
-  /* overflow: hidden;                         */
+html, body {
+  height: 100%;
+  overflow: hidden;                        
    /* Chặn body scroll để ẩn scrollbar hệ thống */
-  /* background-color: theme('colors.bg');      */
+  background-color: theme('colors.bg');     
   /* dùng màu trong tailwind.config */
-  /* color: theme('colors.text'); */
-  /* -webkit-font-smoothing: antialiased; */
-  /* -moz-osx-font-smoothing: grayscale; */
-  /* -webkit-tap-highlight-color: transparent;  */
+  color: theme('colors.text');
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent; 
   /* bỏ flash xanh khi chạm iOS */
-  /* -webkit-text-size-adjust: 100%; */
-  /* text-size-adjust: 100%; */
-  /* overscroll-behavior-y: none;               */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overscroll-behavior-y: none;              
   /* hạn chế bounce chaining */
-/* } */
-
+}
+/*  */
 /* Fallback cho iOS rất cũ (khi chưa có dvh) */
 /* @supports (-webkit-touch-callout: none) {
   body { min-height: -webkit-fill-available; }
