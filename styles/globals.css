@@ -8,6 +8,7 @@
 :root {
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --nav-h: 64px;                  /* Chiều cao nav mặc định */
 }
 
 /* Tránh nội dung bị “ăn” vào tai thỏ */

@@ -32,7 +32,7 @@ export default function BottomNav() {
     <>
       {/* Thanh nav */}
       <nav
-        className="fixed inset-x-0 bottom-0 z-50 border-t bg-white/95 backdrop-blur md:hidden pb-safe"
+        className="fixed inset-x-0 bottom-0 z-50 bg-white/95 pb-safe"
         // style={{ paddingBottom: `env(safe-area-inset-bottom, 0px)` }}
       >
         <div className="relative mx-auto grid max-w-3xl grid-cols-5 px-3 py-2">
