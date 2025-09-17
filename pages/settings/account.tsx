@@ -31,22 +31,23 @@ export default function AccountInfo() {
     <section className="space-y-5">
       <HeaderClose title="Thông tin tài khoản" />
 
+
       <SettingCard title="Chi tiết tài khoản">
         <div className="space-y-4 text-[15px]">
           <div>
-            <div className="text-gray-500">Tên</div>
-            <div className="font-medium">{name}</div>
+            <div className="text-black">Tên</div>
+            <div className="font-normal text-gray-500">{name}</div>
           </div>
           <div>
-            <div className="text-gray-500">Email</div>
-            <div className="font-medium">{email}</div>
+            <div className="text-black">Email</div>
+            <div className="font-normal text-gray-500">{email}</div>
           </div>
         </div>
       </SettingCard>
 
       <p className="text-sm text-gray-600">
         Để xóa hoàn toàn dữ liệu của mình, bạn có thể{" "}
-        <button type="button" className="underline text-rose-600" onClick={() => setOpen(true)}>
+        <button type="button" className="underline text-black   " onClick={() => setOpen(true)}>
           Đóng tài khoản
         </button>
       </p>

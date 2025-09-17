@@ -13,7 +13,7 @@ export default function HeaderClose({ title, subtitle, backTo = ROUTES.SETTINGS 
   return (
     <div>
       {/* Dòng 1: nút close */}
-      <div className="flex justify-start">
+      <div className="flex justify-start mt-2">
         <button
           aria-label="Đóng"
           onClick={() => router.push(backTo)}
@@ -24,9 +24,11 @@ export default function HeaderClose({ title, subtitle, backTo = ROUTES.SETTINGS 
       </div>
 
       {/* Dòng 2: tiêu đề */}
+            {/* <h1 className="text-4xl font-semibold text-black ">Thông tin tài khoản</h1> */}
+
       <div className=" mt-2">
         {subtitle && <div className="text-gray-500">{subtitle}</div>}
-        <h1 className="mt-2 text-2xl font-bold">{title}</h1>
+        <h1 className="mt-2 text-3xl font-medium text-black">{title}</h1>
       </div>
     </div>
 

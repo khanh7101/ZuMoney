@@ -15,19 +15,27 @@ export default function SettingRow({
     <button
       type="button"
       onClick={onClick}
-      className="flex w-full items-center justify-between rounded-lg px-3 py-3 text-left hover:bg-black/[0.02]"
+      className="flex w-full items-center justify-between px-1 py-[6px] text-left text-gray-500"
     >
       <div className="flex items-center gap-3">
-        {icon && <div className="text-xl">{icon}</div>}
-        <div>
-          <div className="text-[15px]">{label}</div>
+        {/* Icon wrapper */}
+        {icon && (
+          <div className="flex items-center justify-center w-6 h-6">
+            {icon}
+          </div>
+        )}
+
+        {/* Text block */}
+        <div className="flex flex-col">
+          <div className="text-[15px] ">{label}</div>
           {description && (
-            <div className="text-xs text-gray-500">{description}</div>
+            <div className="text-xs ">{description}</div>
           )}
         </div>
       </div>
-      <span className="text-gray-400">›</span>
-      
+
+      {/* Mũi tên bên phải */}
+      <span>›</span>
     </button>
   );
 }

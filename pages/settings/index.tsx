@@ -32,7 +32,7 @@ export default function SettingsPage() {
   return (
     <section className="space-y-5 pt-10">
 
-      <h1 className="text-4xl font-semibold">Cài đặt</h1>
+      <h1 className="text-4xl font-semibold text-black ">Cài đặt</h1>
 
       <div className="rounded-2xl border bg-white p-4 shadow-sm">
         <div className="flex items-center gap-3">
@@ -46,22 +46,24 @@ export default function SettingsPage() {
         </div>
       </div>
 
-      <SettingCard title="Cài đặt">
+        <h2 className="text-2xl text-black ">Cài đặt</h2>
+      <SettingCard>
         <div className="space-y-1">
           <SettingRow label="Thông tin tài khoản" onClick={go("/settings/account")} icon={<InfoIcon />} />
           <SettingRow label="Ví mặc định"          onClick={go("/settings/default-wallet")} icon={<WalletIcon />} />
           <SettingRow label="Ngôn ngữ"             onClick={go("/settings/language")} icon={<LangIcon />} />
         </div>
       </SettingCard>
+        <h2 className="text-2xl text-black ">Trợ giúp</h2>
 
-      <SettingCard title="Trợ giúp">
+      <SettingCard >
         <SettingRow label="Liên hệ chúng tôi" onClick={go("/settings/contact")} icon={<MailIcon />} />
       </SettingCard>
 
       <button
         onClick={onLogout}
         disabled={submitting}
-        className="text-sm text-rose-600 underline disabled:opacity-60"
+        className="text-xs text-black  underline disabled:opacity-60"
       >
         {submitting ? "Đang đăng xuất..." : "Đăng xuất"}
       </button>
