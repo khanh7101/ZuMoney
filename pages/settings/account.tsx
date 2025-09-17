@@ -31,15 +31,14 @@ export default function AccountInfo() {
     <section className="space-y-5">
       <HeaderClose title="Thông tin tài khoản" />
 
-
-      <SettingCard title="Chi tiết tài khoản">
+      <SettingCard title="Chi tiết tài khoản" titleClassName="mb-2 font-semibold text-xl text-black">
         <div className="space-y-4 text-[15px]">
           <div>
-            <div className="text-black">Tên</div>
+            <div className="text-black font-semibold">Tên</div>
             <div className="font-normal text-gray-500">{name}</div>
           </div>
           <div>
-            <div className="text-black">Email</div>
+            <div className="text-black font-semibold">Email</div>
             <div className="font-normal text-gray-500">{email}</div>
           </div>
         </div>

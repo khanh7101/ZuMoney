@@ -31,10 +31,10 @@ export default function BottomNav() {
   return (
     <>
       <nav
-        className="fixed inset-x-0 bottom-0 z-50 border-t bg-white pb-safe"
+        className="fixed inset-x-0 bottom-[-30px] z-50 border-t bg-white pb-safe"
       >
         {/* min-h = var(--nav-h) để khung nav không bị co */}
-        <div className="relative mx-auto grid max-w-3xl grid-cols-5 px-3 py-2"
+        <div className="relative mx-auto grid max-w-3xl grid-cols-5 px-3 pt-2 pb-5"
              style={{ minHeight: "var(--nav-h)" }}>
           {ITEMS.map((it, idx) => {
             const Icon = it.icon;
