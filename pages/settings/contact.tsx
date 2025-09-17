@@ -2,7 +2,6 @@
 import HeaderClose from "@shared/layout/HeaderClose";
 import SettingCard from "@shared/ui/SettingCard";
 import { MailIcon } from "@shared/ui/setting-icons";
-import { ROUTES } from "@shared/nav/routes";
 
 export default function ContactPage() {
   return (

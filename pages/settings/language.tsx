@@ -4,7 +4,7 @@ import { ROUTES } from "@shared/nav/routes";
 export default function LanguagePage() {
   return (
     <section className="space-y-5">
-      <HeaderClose title="Chọn ngôn ngữ" subtitle="Ngôn ngữ" />
+      <HeaderClose title="Chọn ngôn ngữ"/>
 
       <div className="rounded-2xl border bg-white p-2 shadow-sm">
         <button className="flex w-full items-center justify-between rounded-xl px-4 py-4 text-left hover:bg-black/[0.02]">

@@ -32,3 +32,4 @@ export const SettingsIcon = (p: React.SVGProps<SVGSVGElement>) => (
     <path d="M19 12a7 7 0 0 0-.2-1.6l2-1.4-2-3.4-2.3 1a7 7 0 0 0-2.8-1.6l-.4-2.5h-4l-.4 2.5a7 7 0 0 0-2.8 1.6l-2.3-1-2 3.4 2 1.4A7 7 0 0 0 5 12a7 7 0 0 0 .2 1.6l-2 1.4 2 3.4 2.3-1a7 7 0 0 0 2.8 1.6l.4 2.5h4l.4-2.5a7 7 0 0 0 2.8-1.6l2.3 1 2-3.4-2-1.4c.1-.5.2-1.1.2-1.6z" stroke="currentColor" fill="none" />
   </svg>
 );
+
