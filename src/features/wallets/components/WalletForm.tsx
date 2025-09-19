@@ -1,50 +1,54 @@
-// components/wallets/WalletForm.tsx
 import { useState } from "react";
-import Button from "@ui/Button";
-import Card from "@ui/Card";
-import { createWallet } from "../services/walletService";
 import { useAuth } from "@auth/context/AuthContext";
-import { useWallets } from "../context/WalletsContext";
+import { createWallet } from "@wallets/services/walletService";
 
-export default function WalletForm() {
+export default function WalletForm({ reload }: { reload: () => Promise<void> }) {
   const { user } = useAuth();
-  const { reload } = useWallets();
-  const [icon, setIcon] = useState("💳");
+  const [walletName, setWalletName] = useState("");   // <— đổi tên biến
   const [amount, setAmount] = useState<number>(0);
+  const [icon, setIcon] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const submit = async () => {
-    if (!user?.id) return alert("Missing user");
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (loading || !user) return;
+    setLoading(true);
     try {
-      setLoading(true);
-      await createWallet({ user_id: user.id, icon_name: icon, amount });
+      await createWallet({
+        user_id: user.id,                 // ok vì service đã hỗ trợ optional user_id
+        name: walletName.trim(),          // <— TRUYỀN GIÁ TRỊ STRING
+        amount,
+        icon_name: icon,
+      });
+      setWalletName("");                  // reset form sau khi tạo
       setAmount(0);
+      setIcon(null);
       await reload();
-    } catch (e: any) {
-      alert(e.message ?? "Failed to create wallet");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <Card title="Create Wallet">
-      <div className="space-y-3">
-        <input
-          className="w-full rounded-lg p-2"
-          placeholder="Icon (emoji or name)"
-          value={icon}
-          onChange={(e) => setIcon(e.target.value)}
-        />
-        <input
-          type="number"
-          className="w-full rounded-lg p-2"
-          placeholder="Initial amount"
-          value={amount}
-          onChange={(e) => setAmount(Number(e.target.value || 0))}
-        />
-        <Button onClick={submit} disabled={loading}>{loading ? "Saving..." : "Add Wallet"}</Button>
-      </div>
-    </Card>
+    <form onSubmit={onSubmit} className="space-y-2">
+      <input
+        value={walletName}
+        onChange={(e) => setWalletName(e.target.value)}
+        placeholder="Tên ví"
+        className="w-full rounded-lg border px-3 py-2"
+        required
+      />
+      <input
+        type="number"
+        value={amount}
+        onChange={(e) => setAmount(Number(e.target.value || 0))}
+        placeholder="Số dư ban đầu"
+        className="w-full rounded-lg border px-3 py-2"
+      />
+      {/* icon picker của bạn ở đây */}
+      <button disabled={loading} className="rounded-lg bg-sky-600 px-4 py-2 text-white disabled:opacity-60">
+        {loading ? "Đang tạo..." : "Tạo ví"}
+      </button>
+    </form>
   );
 }
