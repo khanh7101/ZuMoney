@@ -33,3 +33,49 @@ export const SettingsIcon = (p: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+export const ShowIcon = (p: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    width="1em"
+    height="1em"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+    <circle cx="12" cy="12" r="3" />
+  </svg>
+);
+
+export const HideIcon = (p: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    width="1em"
+    height="1em"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="m15 18-.722-3.25" />
+    <path d="M2 8a10.645 10.645 0 0 0 20 0" />
+    <path d="m20 15-1.726-2.05" />
+    <path d="m4 15 1.726-2.05" />
+    <path d="m9 18 .722-3.25" />
+  </svg>
+);
+
+export const LightningIcon = (p: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    width="1em"
+    height="1em"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
+  >
+    <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
+  </svg>
+);
